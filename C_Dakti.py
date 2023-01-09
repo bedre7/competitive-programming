@@ -1,19 +1,23 @@
-def solution():
+if __name__ == '__main__':
     test_cases = int(input())
 
     for _ in range(test_cases):
         words = input().split()
 
-        ordered = [''] * len(words)
+        sorted = [''] * len(words)
         for word in words:
-            order = ''
-            filtered = ''
+            order = []
+            filtered = []
             for char in word:
                 if char.isdigit():
-                    order += char
+                    order.append(char)
+                    # order += char
                 else:
-                    filtered += char
-            ordered[int(order) - 1] = filtered
-        print(' '.join(ordered))
+                    # filtered += char
+                    filtered.append(char)
 
-solution()
+            sorted[int(''.join(order)) - 1] = ''.join(filtered)
+            
+        # O(N^2)
+            
+        print(' '.join(sorted))

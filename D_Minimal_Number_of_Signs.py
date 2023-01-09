@@ -1,39 +1,23 @@
-def solution():
-    n = int(input())
+if __name__ == '__main__':
+    size = int(input())
 
-    sample = ''
-    allwords = []
+    upper = list(map(str, input()))
+    if size == 1:
+        print(''.join(upper).replace('?', 'c'))
+    else:
+        for i in range(1, size):
+            lower = list(map(str, input()))
 
-    for i in range(n):
-        allwords.append(input())
-
-    sample = [''] * len(allwords[0])
-    
-    index = 0
-    for i in range(len(allwords[0])):
-        curr_char = allwords[0][i]
-        if curr_char == '?':
-            sample[index] = '?'
-            index += 1
-            continue
-
-        isMatched = True
-        isOptional = False
-        for j in range(n):
-            if allwords[j][i] == '?':
-                isOptional = True
-                break
-            if curr_char != allwords[j][i]:
-                break
-        if isOptional:
-            sample += '?'
-        else:
-            if isMatched:
-                sample += curr_char
-            else:
-                sample += '?'
-
-        index += 1
-    print(''.join(sample))
-
-solution()
+            for j in range(len(lower)):
+                if upper[j] == lower[j] == '?':
+                    continue
+                if upper[j] != lower[j]:
+                    if upper[j] == '?' or lower[j] == '?':
+                        lower[j] = upper[j] if upper[j] != '?' else lower[j]
+                    else:
+                        lower[j] = '*'
+            
+            upper = lower
+        
+        print(''.join(upper).replace('?', 'c').replace('*', '?'))
+            

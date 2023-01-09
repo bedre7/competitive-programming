@@ -1,22 +1,31 @@
-def solution():
+def wake_him_up(n, k, theorems, behavior):
+    obvious_theorems = 0
+
+    for i in range(n):
+        if behavior[i] == 1:
+            obvious_theorems += theorems[i]
+    
+    awoken = 0
+    for i in range(k):
+        if behavior[i] == 0:
+            awoken += theorems[i]
+    
+    max_notes = awoken
+    for right in range(k, n):
+        left = right - k
+        if behavior[left] == 0:
+            awoken -= theorems[left]
+        if behavior[right] == 0:
+            awoken += theorems[right]
+        
+        max_notes = max(max_notes, awoken)
+    
+    print(max_notes + obvious_theorems)
+
+
+if __name__ == '__main__':
     n, k = map(int, input().split())
     theorems = list(map(int, input().split()))
-    states = list(map(int, input().split()))
+    behavior = list(map(int, input().split()))
 
-    max_notes = 0
-    curr_notes = 0
-    for i in range(len(states)):
-        if states[i] == 0:
-            temp = 0
-            j = i
-            while j < k + i and j < len(states):
-                temp += theorems[j]
-                j += 1
-            max_notes = max(max_notes, curr_notes + temp)
-            print(curr_notes + temp)
-        else:
-            curr_notes += theorems[i]
-
-    print(max_notes)
-
-solution()
+    wake_him_up(n, k, theorems, behavior)
