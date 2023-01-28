@@ -22,8 +22,7 @@ def solve():
 
     for i in range(N):
         for j in range(M):
-            if board[i][j] != '*':
-                crossOut(i, j)
+            crossOut(i, j)
 
     encrypted = []
     for i in range(N):
