@@ -3,6 +3,7 @@ class Solution:
         nums.sort()
         indices = []
         return self.findIndices(nums, target, 0, len(nums) - 1, indices)
+    
     def findIndices(self, nums, target, startIndex, endIndex, indices):
         midIndex = (startIndex + endIndex) // 2
         if startIndex <= endIndex:

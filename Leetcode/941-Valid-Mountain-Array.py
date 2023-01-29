@@ -8,15 +8,13 @@ class Solution:
         for i in range(1, len(arr)):
             if arr[i] > arr[i - 1]:
                 if not wasDecreasing:
-                    if not wasIncreasing:
-                        wasIncreasing = True
+                    wasIncreasing = True
                 else:
                     return False
             elif arr[i] < arr[i - 1]:
                 if not wasIncreasing:
                     return False
-                if not wasDecreasing:
-                    wasDecreasing = True
+                wasDecreasing = True
             else:
                 return False
         
