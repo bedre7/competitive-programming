@@ -3,7 +3,7 @@ class Solution:
         left = 0
         right = len(numbers) - 1
         
-        while True:
+        while left < right:
             total = numbers[left] + numbers[right]
             if total == target:
                 return [left + 1, right + 1]
