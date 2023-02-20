@@ -3,8 +3,10 @@ def solve():
     nums = list(map(int, input().split()))
     nums.sort()
 
+    if k == 0:  
+        return 1 if nums[0] > 1 else -1
+        
     if k == n:  return nums[-1]
-    if k == 0:  return -1
 
     if nums[k] <= nums[k - 1]:
         return -1
