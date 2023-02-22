@@ -1,10 +1,12 @@
+import string
 from collections import defaultdict, Counter
 def runCase():
     word = input()
     if len(word) < 26:
         return -1
 
-    alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+    alphabet = set(string.ascii_uppercase)
+
     left = right = 0
     occur = defaultdict(int)
 
@@ -15,33 +17,23 @@ def runCase():
             else:
                 left = right
                 occur.clear()
-                occur[word[right]] += 1 if word[right] != '?' else 0
+                occur[word[right]] += 1
 
         if right - left + 1 == 26:
-            empty = 26 - sum(occur.values())
-            nice = [''] * 26
-            filled = 0
-            j = 0
-            ok = True
+            nice = [c for c in word[left:right + 1]]
+            missing = alphabet.difference(nice)
+
             for i in range(26):
-                if not ok: break
-                if word[left + i] != '?':
-                    nice[i] = word[left + i]
-                else:
-                    while j < 26:
-                        if occur[alphabet[j]] == 0:
-                            if filled >= empty:
-                                while left < len(word) and word[left] != '?':
-                                    occur[word[left]] -= 1
-                                    left += 1
-                                ok = False
-                            nice[i] = alphabet[j]
-                            filled += 1
-                            j += 1
-                            break
-                        j += 1
+                if nice[i] == '?':
+                    nice[i] = missing.pop()
+            
+            if not missing:
+                output = word[:left] + ''.join(nice) + word[right + 1:]
+                return output.replace('?','A')
             else:
-                return ''.join(nice)
+                if word[left] != '?':
+                    occur[word[left]] -= 1
+                left += 1
 
         right += 1
     
