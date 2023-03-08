@@ -1,23 +1,16 @@
-class Solution {
-public:
-    int minSubArrayLen(int target, vector<int>& nums) {
-        int n = nums.size();
-        int minLen = INT_MAX;
-        
-        for (int i = 0; i < n; i++)
-        {
-            int sum = 0;
-            for (int j = i; j < n; j++)
-            {
-                sum += nums[j];
-                if (sum >= target)
-                {
-                    minLen = min(minLen, j - i + 1);
-                    break;
-                }
-            }
-        }
-        
-        return minLen != INT_MAX ? minLen : 0;
-    }
-};
+class Solution:
+    def minSubArrayLen(self, target: int, nums: List[int]) -> int:
+        n = len(nums)
+        minLen = n
+        found = False
+        left = 0
+        curr = 0
+        for right in range(n):
+            curr += nums[right]
+            while curr >= target:
+                found = True
+                minLen = min(minLen, right - left + 1)
+                curr -= nums[left]
+                left += 1
+            
+        return minLen if found else 0
