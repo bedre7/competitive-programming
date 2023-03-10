@@ -1,6 +1,5 @@
 class Solution:
     def timeRequiredToBuy(self, tickets: List[int], k: int) -> int:
-        turn = 0
         time = 0
         queue = collections.deque([[t, i] for i, t in enumerate(tickets)])
         
@@ -13,3 +12,5 @@ class Solution:
                 queue.popleft()
             else:
                 queue.append(queue.popleft())
+        
+        return time
