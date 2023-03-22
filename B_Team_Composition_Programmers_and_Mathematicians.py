@@ -2,13 +2,7 @@ import sys, threading
 from collections import defaultdict, Counter
 
 def runCase():
-    a, b = map(int, input().split())
-
-    def makeTeam(teams):
-        if a == b: return a // 2
-        return min(min(a, b), max(a, b) // 3)
-    
-    print(makeTeam(1))
+   pass
 
 def main():
     tests = int(input())
