@@ -5,14 +5,15 @@ def runCase():
     n = int(input())
     parents = list(map(int, input().split()))
     tree = defaultdict(list)
-
+    
     for i in range(n):
         if parents[i] != i + 1:
             tree[parents[i]].append(i + 1)
     
     paths = []
-    children = set([c for childs in tree.values() for c in childs])
+    children = set([c for childz in tree.values for c in childz])
     root = [p for p in parents if p not in children][0]
+    
     stack = [root]
     currPath = []
     while stack:
