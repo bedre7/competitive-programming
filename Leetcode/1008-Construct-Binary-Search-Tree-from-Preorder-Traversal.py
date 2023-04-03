@@ -18,4 +18,3 @@ class Solution:
             root = insert(root, val)
         
         return root
-                

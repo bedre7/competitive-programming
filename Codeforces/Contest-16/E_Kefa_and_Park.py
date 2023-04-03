@@ -4,32 +4,28 @@ def runCase():
     n, m = map(int, input().split())
     cats = list(map(int, input().split()))
     tree = defaultdict(list)
-    childs = set()
     for _ in range(n - 1):
         x, y = map(int, input().split())
-        if y in childs:
-            tree[y].append([x, True if cats[x - 1] == 1 else False])
-            childs.add(x)
-        else:
-            tree[x].append([y, True if cats[y - 1] == 1 else False])
-            childs.add(y)
+        tree[y].append([x, bool(cats[x - 1])])
+        tree[x].append([y, bool(cats[y - 1])])
     
     root = 1
-    stack = [(root, bool(cats[0]), 0)]
+    stack = [(root, bool(cats[0]), 0, -1)]
     canGo = 0
     
     while stack:
-        node, hasCat, count = stack.pop()
+        node, hasCat, count, prev = stack.pop()
         if hasCat:
             count += 1
         else:
             count = 0
         if count > m:
             continue
-        if len(tree[node]) == 0:
+        if len(tree[node]) == 1 and node != root:
             canGo += 1
         for child in tree[node]:
-                stack.append((child[0], child[1], count))
+                if child[0] != prev:
+                    stack.append((child[0], child[1], count, node))
     
     print(canGo)
 if __name__ == '__main__':

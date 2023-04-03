@@ -7,7 +7,7 @@ def runCase():
     for _ in range(n):
         f, t = map(int, input().split())
         if t > k:
-            maxJoy = max(maxJoy, f - (t - k))
+            maxJoy = max(maxJoy, f - t + k)
         else:
             maxJoy = max(maxJoy, f)
 
