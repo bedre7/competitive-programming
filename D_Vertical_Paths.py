@@ -11,7 +11,7 @@ def runCase():
             tree[parents[i]].append(i + 1)
     
     paths = []
-    children = set([c for childz in tree.values for c in childz])
+    children = set([c for childz in tree.values() for c in childz])
     root = [p for p in parents if p not in children][0]
     
     stack = [root]
