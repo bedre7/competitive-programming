@@ -1,8 +1,5 @@
 class Solution:
     def solveSudoku(self, board: List[List[str]]) -> None:
-        """
-        Do not return anything, modify board in-place instead.
-        """
         N, M = len(board), len(board[0])
         def isSafe(row, col, char):
             for i in range(N):
@@ -16,7 +13,7 @@ class Solution:
             return True
         
         def backtrack(index):
-            if index >= 81: return True
+            if index >= N * M: return True
             i = index // N
             j = index % N
             if board[i][j] != '.': return backtrack(index + 1)
