@@ -8,8 +8,7 @@ class Solution:
             for dx, dy in dirs:
                 x, y = r + dx, c + dy
                 
-                if (0 <= x < m and 0 <= y < n and
-                   image[x][y] == COLOR):
+                if 0 <= x < m and 0 <= y < n and image[x][y] == COLOR:
                     image[x][y] = color
                     dfs(x, y, COLOR)
         
