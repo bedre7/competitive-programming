@@ -8,7 +8,7 @@ class Solution:
             if current == n - 1:
                 visited.clear()
                 paths.append(path.copy())
-                return True
+                return
             
             for v in graph[current]:
                 if v not in visited:
@@ -16,9 +16,6 @@ class Solution:
                     path.append(v)
                     dfs(v, path)
                     path.pop()
-            
-            return False
-                    
         
         for u in graph[0]:
             path = [0, u]
