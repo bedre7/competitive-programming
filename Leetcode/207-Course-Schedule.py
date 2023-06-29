@@ -36,9 +36,8 @@ class Solution:
             for pre in graph[course]:
                 if colors[pre] == GRAY:
                     return True
-                if colors[pre] == WHITE:
-                    if cyclic(pre):
-                        return True    
+                if colors[pre] == WHITE and cyclic(pre):
+                        return True
             colors[course] = BLACK
             
             return False
