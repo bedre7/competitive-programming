@@ -23,10 +23,10 @@ class Solution:
             components[find(i)].append(s[i])
         for par in components.keys():
             components[par].sort(reverse=True)
-        merged = []
+        swapped = []
         for i in range(len(s)):
-            merged.append(components[find(i)].pop())
-        return ''.join(merged)
+            swapped.append(components[find(i)].pop())
+        return ''.join(swapped)
         # DFS
         # graph = defaultdict(list)
         # for u, v in pairs:
