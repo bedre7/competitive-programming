@@ -5,7 +5,7 @@ class Solution:
         m, n = len(board), len(board[0])
 
         queue = deque([click])
-        visited = set([click[0], click[1]])
+visited = set([(click[0], click[1])])
         while queue:
             r, c = queue.popleft()
             visited.add((r, c))
